@@ -1,0 +1,36 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def show_message(msg):
+    messagebox.showinfo("Cybertool kit", msg)
+
+def program_1():
+    show_message("Program 1 executed")
+
+def program_2():
+    show_message("Program 2 executed")
+
+def program_3():
+    show_message("Program 3 executed")
+
+def program_4():
+    show_message("Program 4 executed")
+
+# Create the main application window
+window = tk.Tk()
+window.title("Cybertool kit")
+
+# Create buttons for the programs
+button1 = tk.Button(window, text="Program 1", command=program_1)
+button2 = tk.Button(window, text="Program 2", command=program_2)
+button3 = tk.Button(window, text="Program 3", command=program_3)
+button4 = tk.Button(window, text="Program 4", command=program_4)
+
+# Place the buttons on the window
+button1.grid(row=0, column=0)
+button2.grid(row=0, column=1)
+button3.grid(row=1, column=0)
+button4.grid(row=1, column=1)
+
+# Run the main event loop
+window.mainloop()
