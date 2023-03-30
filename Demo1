@@ -1,36 +1,40 @@
-import tkinter as tk
-from tkinter import messagebox
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QMessageBox
 
-def show_message(msg):
-    messagebox.showinfo("Cybertool kit", msg)
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
 
-def program_1():
-    show_message("Program 1 executed")
+        self.init_ui()
 
-def program_2():
-    show_message("Program 2 executed")
+    def init_ui(self):
+        self.setWindowTitle('Cybertool kit')
 
-def program_3():
-    show_message("Program 3 executed")
+        vbox = QVBoxLayout()
 
-def program_4():
-    show_message("Program 4 executed")
+        btn_program1 = QPushButton('Program 1', self)
+        btn_program1.clicked.connect(lambda: self.show_message('Program 1 executed'))
+        vbox.addWidget(btn_program1)
 
-# Create the main application window
-window = tk.Tk()
-window.title("Cybertool kit")
+        btn_program2 = QPushButton('Program 2', self)
+        btn_program2.clicked.connect(lambda: self.show_message('Program 2 executed'))
+        vbox.addWidget(btn_program2)
 
-# Create buttons for the programs
-button1 = tk.Button(window, text="Program 1", command=program_1)
-button2 = tk.Button(window, text="Program 2", command=program_2)
-button3 = tk.Button(window, text="Program 3", command=program_3)
-button4 = tk.Button(window, text="Program 4", command=program_4)
+        btn_program3 = QPushButton('Program 3', self)
+        btn_program3.clicked.connect(lambda: self.show_message('Program 3 executed'))
+        vbox.addWidget(btn_program3)
 
-# Place the buttons on the window
-button1.grid(row=0, column=0)
-button2.grid(row=0, column=1)
-button3.grid(row=1, column=0)
-button4.grid(row=1, column=1)
+        btn_program4 = QPushButton('Program 4', self)
+        btn_program4.clicked.connect(lambda: self.show_message('Program 4 executed'))
+        vbox.addWidget(btn_program4)
 
-# Run the main event loop
-window.mainloop()
+        self.setLayout(vbox)
+
+    def show_message(self, msg):
+        QMessageBox.information(self, 'Cybertool kit', msg)
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
