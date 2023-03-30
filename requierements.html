@@ -1,1 +1,247 @@
+Requirements Specification for Ethical Hacking Toolkit
+1. Introduction
+
+1.1 Purpose of Product
+Our Ethical Hacking Toolkit software is designed to provide ethical hacking tools for educational and interactive purposes, allowing users to learn about and understand cybersecurity threats and vulnerabilities. With our software, users can practice and develop ethical hacking skills in a safe and controlled environment, without risking real-world consequences. Our goal is to empower individuals and organizations to protect themselves from cyber-attacks by providing hands-on experience and knowledge of security best practices. Our software is suitable for students, cybersecurity professionals, and anyone interested in learning about ethical hacking and cybersecurity.
+1.2 Scope of Product
+Our product includes tools such as: Encryption tools combined with Raspberry Pi hardware. An Infected USB that executes files upon connecting. A keylogger that runs anonymously and logs user input. A packet sniffer that captures and analyzes network traffic that passes through a network interface, such as a network card or a wireless adapter. A Intrusion detector and many other tools that are all available and interactable through our graphical user interface. Our product does not include live support or coaching but rather provides a safe learning environment where the user can explore and develop their cybersecurity skills through a hands-on interactive environment. 
+1.3 Acronyms, Abbreviations, Definitions
+Acronyms:
+•	GUI: Graphical User Interface
+•	OS: Operating System
+•	IP: Internet Protocol
+•	MAC: Media Access Control
+•	IDS: Intrusion Detection System
+•	AES: Advanced Encryption Standard
+•	SSL: Secure Sockets Layer
+•	TCP: Transmission Control Protocol
+•	UDP: User Datagram Protocol
+•	API: Application Programming Interface
+Abbreviations:
+•	Ethical Hacker's Toolkit: EHT
+•	Key Logger: KL
+•	Packet Sniffer: PS
+•	Intrusion Detection Tools: IDT
+•	Pen-Test Tools: PTT
+•	Backdoor Script Reader: BSR
+•	Brute Force Password Cracker: BFPC
+•	Packet Interceptors: PI
+Definitions:
+•	Ethical Hacking: the process of identifying and exploiting vulnerabilities in a computer system or network for the purpose of improving its security.
+•	Key Logger: a tool that records keystrokes made on a computer or mobile device.
+•	Packet Sniffer: a tool that captures and analyzes network traffic.
+•	Encryption: the process of converting plaintext into ciphertext to protect sensitive information.
+•	Intrusion Detection System: a tool that monitors network traffic for signs of unauthorized access or malicious activity.
+•	Pen-Test Tools: tools that simulate real-world attacks on a system or network to identify vulnerabilities and weaknesses.
+•	Backdoor Script Reader: a tool that detects and analyzes malicious code designed to provide unauthorized access to a system or network.
+•	Brute Force Password Cracker: a tool that uses a trial-and-error method to guess a password by trying every possible combination of characters.
+•	Packet Interceptors: tools that intercept and modify network traffic for testing or analysis purposes.
+1.4 References
+2. General Description of Product
+Our software is an ethical hacker's toolkit that provides a range of tools and techniques for testing and securing computer networks and systems. Our toolkit includes key loggers, packet sniffers, encryption tools, intrusion detection tools, pen-test tools, and more, all within a user-friendly GUI that is designed to be an educational and interactive environment.
+Our toolkit is ideal for students, cybersecurity professionals, and anyone interested in learning about ethical hacking and cybersecurity. With our software, users can explore different aspects of cybersecurity, test the vulnerabilities of their own networks and systems, and practice ethical hacking techniques in a safe and controlled environment.
+Our toolkit is constantly updated with the latest security tools and techniques, ensuring that users have access to the most effective and up-to-date ethical hacking tools available. Our software is also designed to be highly customizable, allowing users to tailor the software to their specific needs and requirements.
+Overall, our software provides a comprehensive and user-friendly toolkit for ethical hackers and cybersecurity professionals, allowing them to test and secure computer networks and systems in a safe and responsible manner.
+2.1 Context of Product
+Our product is designed to address the growing need for effective and accessible tools for ethical hackers and cybersecurity professionals. As cyber threats continue to increase in frequency and sophistication, it is more important than ever to have the right tools and skills to protect computer networks and systems.
+Our software provides a comprehensive and customizable toolkit for ethical hackers and cybersecurity professionals, allowing them to test and secure computer networks and systems in a safe and responsible manner. Our toolkit includes a range of tools and techniques, such as key loggers, packet sniffers, encryption tools, intrusion detection tools, and pen-test tools, all within a user-friendly GUI that is designed to be an educational and interactive environment.
+Our product is not only designed to meet the needs of experienced cybersecurity professionals but also for students and anyone interested in learning about ethical hacking and cybersecurity. Our software provides a hands-on learning experience, allowing users to explore different aspects of cybersecurity and practice ethical hacking techniques in a safe and controlled environment.
+Overall, our product provides a timely and necessary solution for the increasing cybersecurity threats faced by individuals, businesses, and organizations. Our goal is to empower users to protect themselves from cyber attacks by providing a comprehensive and accessible ethical hacking toolkit.
+2.2 Domain Model with Description
+Classes:
+•	User
+•	Accounts
+•	Bad USB
+•	Key Logger
+•	Packet Sniffer
+•	Encryption
+•	Intrusion Detection
+•	Pen Testing
+•	Backdoor Script Reader
+•	Brute Force password cracker
+•	IP and Mac address Spoofer
+•	Packet Interceptors 
+
+Description: The Ethical Hacker's Toolkit domain model represents the entities and relationships involved in a software product designed for ethical hackers and cybersecurity professionals. The User class represents the individuals who can access and use the toolkit. The Account class manages user account information such as login credentials, access levels, and tool usage history.
+The Tool class represents a generic tool available within the toolkit. The Key Logger class represents a specific type of tool that captures and logs keystrokes. The Packet Sniffer class represents a tool that captures and analyzes network traffic. The Encryption class represents a tool that encrypts and decrypts data. The Intrusion Detection class represents a tool that detects and alerts on potential intrusions. The Pen Testing class represents a tool that performs penetration testing on networks and systems.
+All of these tools are provided within a user-friendly GUI that is designed to be an educational and interactive environment. The GUI allows users to easily navigate the toolkit, select and use individual tools, and customize their experience. The toolkit is designed to provide a safe and responsible environment for ethical hackers and cybersecurity professionals to test and secure computer networks and systems.
+Overall, the Ethical Hacker's Toolkit domain model provides a framework for designing a software product that provides a comprehensive and customizable toolkit for ethical hackers and cybersecurity professionals, while also providing a safe and interactive learning experience for students and anyone interested in learning about ethical hacking and cybersecurity.
+
+2.3 Product Functions (general)
+
+1.	Bad USB: Allows users to execute pre-configured commands on a computer by emulating a USB device.
+2.	Key Logger: Captures and logs keystrokes made by users.
+3.	Packet Sniffer: Captures and analyzes network traffic, including the ability to detect potential security vulnerabilities.
+4.	Encryption: Provides a range of encryption methods for securing data, including symmetric and asymmetric encryption.
+5.	Intrusion Detection: Detects and alerts users to potential network intrusions, allowing for quick response and resolution.
+6.	Pen Testing: Provides a range of functions for conducting penetration testing, allowing users to test their networks and systems for potential vulnerabilities.
+7.	Backdoor Script Reader: Allows users to execute scripts designed to exploit backdoors in systems, potentially providing access to otherwise secure networks.
+8.	Brute Force Password Cracker: Can be used to automate password cracking attempts, potentially allowing users to gain unauthorized access to systems.
+9.	IP and MAC Address Spoofer: Allows users to spoof their IP and MAC addresses, potentially providing anonymity or disguising their network location.
+10.	Packet Interceptors: Captures and intercepts network traffic, potentially allowing users to analyze and manipulate data transmitted over networks.
+Overall, the Ethical Hacker's Toolkit provides a range of functions that can be used to secure computer networks and systems, while also providing an educational and interactive environment for users to learn about ethical hacking and cybersecurity. They should only be used in a legal and ethical manner, and within our educational environment. 
+2.4 User Characteristics and Expectations
+User Characteristics:
+•	Cybersecurity professionals: Experienced professionals with a background in cybersecurity, who are familiar with the latest security threats and vulnerabilities.
+•	IT administrators: Network administrators and IT professionals who are responsible for securing networks and systems.
+•	Ethical hackers: Individuals who have been trained in ethical hacking and penetration testing techniques, and who use these skills to identify and address security vulnerabilities.
+•	Students: Individuals currently perusing a degree in computer science or related field and students who are generally interested in learning about cybersecurity and its functions.
+
+User Expectations:
+•	Ease of use: Users expect the toolkit to be user-friendly and easy to navigate, with clear instructions and guidance for each tool.
+•	Functionality: Users expect the toolkit to have a range of tools and functions for ethical hacking and cybersecurity, including key loggers, packet sniffers, encryption tools, intrusion detection tools, pen-test tools, and more.
+•	Reliability: Users expect the toolkit to be reliable and accurate, with minimal errors or bugs.
+•	Compatibility: Users expect the toolkit to be compatible with a range of operating systems and network configurations.
+•	Educational Resources: Users expect the toolkit to include educational resources, such as training modules and tutorials, to help them learn about ethical hacking and cybersecurity.
+•	Ethical Standards: Users expect the toolkit to be designed and used in an ethical and legal manner, without causing harm to others or violating privacy laws.
+•	Support: Users expect the toolkit to have a support system in place, such as user forums or technical support, to help them troubleshoot any issues or questions they may have.
+2.5 Constraints
+•	Legal constraints: The software must comply with local laws and regulations regarding ethical hacking and cybersecurity. It should not be used for malicious or illegal purposes.
+•	Ethical constraints: The software should adhere to ethical standards and principles for cybersecurity, and should not be used to harm or violate the privacy of individuals or organizations.
+•	Compatibility constraints: The software should be compatible with a wide range of operating systems, networks, and hardware configurations, in order to maximize its usefulness for users.
+•	Resource constraints: The software may require a certain amount of computing resources (such as CPU, memory, or disk space) to operate effectively, and users may need to ensure that their systems meet these requirements.
+•	Technical constraints: Some tools within the software may have technical limitations or dependencies on other software, hardware, or network components, which could impact their effectiveness or reliability.
+•	Training constraints: The software may require users to have a certain level of knowledge or training in ethical hacking and cybersecurity, in order to use it effectively and safely.
+•	Cost constraints: The software may have a cost associated with it, either in terms of purchasing the software itself or in terms of acquiring additional hardware or software to use with it. This may limit its accessibility for some users.
+•	Liability constraints: The software developer may have liability concerns related to the use of the software, and may need to include appropriate disclaimers or warnings in order to limit their legal exposure.
+2.6 Assumptions and Dependencies
+Assumptions:
+•	Users have a basic understanding of ethical hacking and cybersecurity principles.
+•	Users have the necessary hardware and software to support the toolkit, such as a computer with a compatible operating system and sufficient processing power and memory.
+•	Users will use the toolkit for educational and ethical purposes only, and will not engage in malicious or illegal activities.
+Dependencies:
+•	The toolkit may depend on certain operating system features or libraries, which may need to be installed or configured separately by the user.
+•	The effectiveness of some tools (such as intrusion detection or password cracking) may depend on the complexity and strength of the target system's security measures.
+•	The toolkit may require updates or patches to address known vulnerabilities or bugs.
+•	The toolkit may rely on external data sources (such as vulnerability databases or threat intelligence feeds) for some of its functionality.
+•	The accuracy and reliability of some tools (such as packet sniffers or IP/MAC address spoofers) may depend on the quality of the network connection or other external factors.
+3. Functional Requirements
+Requirements: 
+1.	Key Logger
+•	Capture keystrokes on a target device, including passwords and other sensitive information.
+•	Allow users to specify which applications or websites to monitor.
+•	Save captured data to a log file for later analysis.
+2.	Packet Sniffer
+•	Monitor network traffic on a target device, capturing packets and analyzing their contents.
+•	Provide filtering options to allow users to focus on specific types of traffic.
+•	Display captured data in an easy-to-read format.
+3.	Encryption
+•	Provide tools for encrypting files and messages, using strong and secure encryption algorithms.
+•	Allow users to specify the level of encryption and other settings.
+•	Provide options for decrypting and verifying encrypted content.
+4.	Intrusion Detection
+•	Monitor a target system for suspicious activity, such as unauthorized access or changes to system settings.
+•	Alert users to potential threats and provide recommendations for remediation.
+•	Provide tools for analyzing system logs and identifying potential vulnerabilities.
+5.	Pen Testing
+•	Provide tools for conducting penetration testing on target systems, including network scanning and vulnerability assessment.
+•	Generate reports and recommendations based on testing results.
+•	Support both manual and automated testing methodologies.
+6.	Backdoor Script Reader
+•	Detect and analyze backdoor scripts on a target system.
+•	Provide options for removing or neutralizing backdoor scripts.
+•	Generate reports and recommendations based on script analysis.
+7.	Brute Force Password Cracker
+•	Attempt to crack passwords on a target system using brute force methods.
+•	Allow users to specify password dictionaries and other settings.
+•	Provide options for saving and analyzing cracked passwords.
+8.	IP and MAC Address Spoofer
+•	Allow users to spoof their IP and MAC addresses to avoid detection or access restricted resources.
+•	Provide options for configuring spoofing settings and monitoring results.
+•	Display spoofing activity in an easy-to-read format.
+9.	Packet Interceptors
+•	Intercept packets on a target system and redirect them to a desired destination.
+•	Provide filtering options to allow users to focus on specific types of traffic.
+•	Display intercepted packets in an easy-to-read format.
+
+4. System and Non-functional Requirements
+4.1 External Interface Requirements (User,Hardware,Software,Communications)
+User Interfaces:
+•	The software shall have a user-friendly graphical user interface (GUI) that is easy to navigate and understand for users with basic computer skills.
+•	The GUI shall be customizable to allow users to arrange the different tools to their preference and save their preferred settings.
+•	The GUI shall include clear instructions and help documentation on how to use each tool.
+Hardware Interfaces:
+•	The software shall run on any computer with a minimum of 4GB RAM and 1.5 GHz processor speed.
+•	The software requires a network card to operate some of the network-based tools such as the packet sniffer and IP/MAC address spoofer.
+Software Interfaces:
+•	The software shall be compatible with the following operating systems: Windows, Mac OS, and Linux.
+•	The software shall integrate with common web browsers such as Chrome, Firefox, and Safari to allow for easy packet interception and analysis.
+•	The software shall be able to import and export data in multiple formats including CSV, XML, and JSON.
+Communications Interfaces:
+•	The software shall be able to communicate with external devices such as USB drives to allow for the use of the Bad USB tool.
+•	The software shall be able to communicate with network devices to scan and detect vulnerabilities using the intrusion detection and pen testing tools.
+•	The software shall be able to communicate with remote devices over the internet to allow for remote penetration testing and monitoring.
+
+4.2 Performance Requirements
+NF.4.4.1 - Software Requirements
+•	The toolkit shall be compatible with Windows 10 (64-bit) operating system.
+•	The toolkit shall be able to run on systems with at least 4GB of RAM and 2.0 GHz processor speed.
+•	The toolkit shall support a minimum resolution of 1024 x 768.
+NF.4.4.2 - Hardware Requirements
+•	The toolkit shall require a network card to operate some of the network-based tools such as the packet sniffer and IP/MAC address spoofer.
+•	The toolkit shall require a USB port to allow for the use of the Bad USB tool.
+•	The toolkit shall require a minimum of 1 GB of free disk space.
+NF.4.4.3 - Operating System Requirements
+•	The toolkit shall be compatible with the following operating systems: Windows, Mac OS, and Linux.
+•	The toolkit shall support the latest version of each operating system.
+NF.4.4.4 - Network Requirements
+•	The toolkit shall require a stable internet connection to perform remote penetration testing and monitoring.
+•	The toolkit shall be able to communicate with network devices to scan and detect vulnerabilities using the intrusion detection and pen testing tools.
+•	The toolkit shall support popular web browsers such as Chrome, Firefox, and Safari for easy packet interception and analysis.
+4.3 Design Constraints
+The design of the ethical hacker's toolkit shall comply with industry standard ethical hacking practices and legal regulations.
+NF.4.3.1 - Legal Compliance Requirements
+•	The toolkit shall not be used for illegal activities, and shall only be used for educational and authorized security testing purposes.
+•	The toolkit shall comply with local and international laws and regulations, including but not limited to, data privacy and security laws.
+•	The toolkit shall not store any sensitive or personally identifiable information without the explicit consent of the user.
+NF.4.3.2 - Ethical Compliance Requirements
+•	The toolkit shall follow the ethical principles of white hat hacking, and shall not be used for malicious purposes.
+•	The toolkit shall not cause any harm or damage to the systems being tested, and shall not be used to disrupt or damage any network or system.
+•	The toolkit shall not be used to access any system or network without the explicit authorization and consent of the owner.
+NF.4.3.3 - Data Security Requirements
+•	The toolkit shall use encryption to protect any sensitive data stored or transmitted within the application, including login credentials and user data.
+•	The toolkit shall securely store any user logs and records, and shall not allow unauthorized access to such data.
+•	The toolkit shall implement secure coding practices to prevent any potential vulnerabilities or exploits.
+
+4.4 Quality Requirements
+The ethical hacker's toolkit shall meet the following quality expectations to ensure user satisfaction and safety during use. Failure to meet these requirements may result in issues such as security breaches, data loss, and software malfunctions.
+1.	Reliability
+•	The toolkit shall operate reliably and consistently under normal usage conditions.
+•	The toolkit shall not cause system crashes, freezes, or errors that may lead to data loss or corruption.
+•	The toolkit shall recover gracefully from any system or network errors.
+NF.4.4.1 - Reliability Requirements
+•	The toolkit shall be tested thoroughly for any defects, bugs, or errors before release.
+•	The toolkit shall be monitored continuously for any potential issues, and shall be updated regularly to address any newly discovered vulnerabilities or threats.
+•	The toolkit shall provide error logging and alerting to notify the user of any issues or errors that occur.
+2.	Performance
+•	The toolkit shall perform efficiently and effectively without causing any system slowdowns or disruptions.
+•	The toolkit shall process and analyze data accurately and quickly to provide meaningful results.
+•	The toolkit shall not consume excessive system resources, such as memory or CPU usage.
+NF.4.4.2 - Performance Requirements
+•	The toolkit shall be optimized for performance, and shall be tested thoroughly under various usage scenarios and environments.
+•	The toolkit shall be scalable and able to handle large volumes of data without compromising performance.
+•	The toolkit shall provide performance monitoring and reporting to the user.
+3.	Security
+•	The toolkit shall provide robust security measures to protect user data and prevent any unauthorized access or breaches.
+•	The toolkit shall use encryption to secure any sensitive data stored or transmitted within the application.
+•	The toolkit shall implement secure coding practices to prevent any potential vulnerabilities or exploits.
+NF.4.4.3 - Security Requirements
+•	The toolkit shall follow industry-standard security practices and protocols.
+•	The toolkit shall be tested thoroughly for any security vulnerabilities or weaknesses.
+•	The toolkit shall provide security logging and alerting to notify the user of any potential security breaches or threats.
+
+4.5 Other Requirements
+
+NF.4.5.1: The product shall provide a user manual and online help documentation.
+NF.4.5.2: The product shall be easy to install and set up on various operating systems.
+NF.4.5.3: The product shall be compatible with various browsers, including Chrome, Firefox, and Safari.
+NF.4.5.4: The product shall provide regular updates to ensure security and functionality.
+NF.4.5.5: The product shall provide the ability to customize settings and preferences.
+NF.4.5.6: The product shall provide the ability to export and import data.
+NF.4.5.7: The product shall provide the ability to generate reports and logs.
+NF.4.5.8: The product shall be compliant with ethical and legal hacking standards and regulations.
+NF.4.5.9: The product shall provide support and customer service to users.
+NF.4.5.10: The product shall have a backup and recovery mechanism in case of system failure or data loss.
+5. Appendices
+
 
