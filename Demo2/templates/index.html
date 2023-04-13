@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacker Toolkit</title>
+    <style>
+        body {
+            background-color: red;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .tool-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+        button {
+            background-color: tan;
+            color: black;
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        button:hover {
+            background-color: #bfa47e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ethical Hacker Toolkit</h1>
+    <div class="tool-container">
+        <h2>Packet Sniffer</h2>
+        <button onclick="openPacketSniffer()">Open Packet Sniffer</button>
+        <button onclick="showDescription('sniffer')">About</button>
+    </div>
+
+    <div class="tool-container">
+        <h2>MAC Spoofer</h2>
+        <button onclick="openMacSpoofer()">Open MAC Spoofer</button>
+        <button onclick="showDescription('spoofer')">About</button>
+    </div>
+    
+    <div class="tool-container">
+        <h2>Bad USB</h2>
+        <button onclick="openBadUSB()">Bad USB (.EXE)</button>
+        <button onclick="showDescription('Bad USB')">About</button>
+    </div>
+
+<script>
+
+ function openPacketSniffer() {
+            // Code to open packet_sniffer.py
+            console.log("Open Packet Sniffer");
+        }
+
+        function openMacSpoofer() {
+            // Code to open mac_spoofer.py
+            console.log("Open MAC Spoofer");
+        }
+        
+        function openBadUSB() {
+            // Code to open mac_spoofer.py
+            console.log("Open Bad USB");
+        }
+
+        function showDescription(tool) {
+            let description;
+            switch (tool) {
+                case 'encryption':
+                    description = 'The Encryption Tool allows you to encrypt and decrypt messages using a symmetric key algorithm. You can generate a key, use it to securely encrypt a message, and then share the key with the recipient to decrypt the message.';
+                    break;
+                case 'sniffer':
+                    description = 'The Packet Sniffer tool captures network packets transmitted over a specific network interface. It can help you analyze network traffic and troubleshoot network-related issues.';
+                    break;
+                case 'spoofer':
+                    description = 'The MAC Spoofer tool allows you to change the MAC address of your network interface. This can help you protect your privacy, bypass network restrictions, or test network security.';
+                    break;
+                case 'Bad USB':
+                    description = 'A Bad USB is a seemingly innocuous USB device, such as a flash drive or a charging cable, that has been modified with malicious software. When plugged into a computer, the Bad USB acts as an input device, such as a keyboard or mouse, and can execute a series of pre-programmed commands.';
+                    break;
+                default:
+                    description = 'No description available.';
+            }
+            alert(description);
+        }
+    </script>
+
+    
+    <!-- Encryption Tool -->
+    <div class="tool-container">
+        <h2>Encryption Tool</h2>
+        <button onclick="openEncryptionTool()">Open Encryption Tool</button>
+        <button onclick="showDescription('encryption')">About</button>
+    </div>
+    <div class="tool-container" id="encryption-tool" style="display: none;">
+        <h2>Encryption Tool - SHA-256</h2>
+        <form id="encryption-form">
+            <label for="user_input">Enter a string to encrypt using SHA-256:</label>
+            <input type="text" id="user_input" name="user_input">
+            <button type="submit">Encrypt</button>
+        </form>
+        <p id="encrypted-input-result"></p>
+    </div>
+
+    <!-- Other tool containers -->
+    <!-- ... -->
+
+    <script>
+        document.getElementById("encryption-form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const userInput = document.getElementById("user_input").value;
+
+            const response = await fetch("/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ user_input: userInput })
+            });
+
+            const { encrypted_input } = await response.json();
+            document.getElementById("encrypted-input-result").innerText = `Encrypted input (SHA-256): ${encrypted_input}`;
+        });
+
+        function openEncryptionTool() {
+            document.getElementById("encryption-tool").style.display = "block";
+        }
+
+        // Add other openX functions here
+
+        function showDescription(tool) {
+            let description;
+            switch (tool) {
+                case 'encryption':
+                    description = 'The Encryption Tool allows you to encrypt and decrypt messages using a symmetric key algorithm. You can generate a key, use it to securely encrypt a message, and then share the key with the recipient to decrypt the message.';
+                    break;
+                case 'sniffer':
+                    description = 'The Packet Sniffer tool captures network packets transmitted over a specific network interface. It can help you analyze network traffic and troubleshoot network-related issues.';
+                    break;
+                case 'spoofer':
+                    description = 'The MAC Spoofer tool allows you to change the MAC address of your network interface. This can help you protect your privacy, bypass network restrictions, or test network security.';
+                    break;
+                case 'Bad USB':
+                    description = 'A Bad USB is a seemingly innocuous USB device, such as a flash drive or a charging cable, that has been modified with malicious software. When plugged into a computer, the Bad USB acts as an input device, such as a keyboard or mouse, and can execute a series of pre-programmed commands.';
+                    break;
+                default:
+                    description = 'No description available.';
+            }
+            alert(description);
+        }
+
+        document.getElementById("encryption-form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const userInput = document.getElementById("user_input").value;
+            const encryptedInput = new TextEncoder().encode(userInput);
+            const digest = await crypto.subtle.digest('SHA-256', encryptedInput);
+            const encryptedInputArray = Array.from(new Uint8Array(digest));
+            const encryptedInputHex = encryptedInputArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            document.getElementById("encrypted-input-result").innerText = `Encrypted input (SHA-256): ${encryptedInputHex}`;
+        });
+    </script>
+</body>
+</html>
