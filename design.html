@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacker Toolkit Design</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+            header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+    }
 
+    nav {
+        display: flex;
+        justify-content: space-around;
+        background-color: #333;
+        padding: 0.5rem;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem;
+    }
+
+    nav a:hover {
+        background-color: #555;
+    }
+
+    article {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+    }
+
+    article h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    article p {
+        margin-bottom: 0.5rem;
+    }
+
+    .architecture-diagram {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .architecture-diagram img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Ethical Hacker Toolkit Design</h1>
+    </header>
+    <nav>
+    <a href="#overview">Overview</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#class-level-design">Class-Level Design</a>
+    <a href="#control-issues">Control Issues</a>
+</nav>
+
+<article id="overview">
+    <h2>Overview</h2>
+    <p>The Ethical Hacker Toolkit is an application designed to provide a suite of ethical hacking tools, including an Encryption/Decryption Tool, Packet Sniffer, MAC Spoofer, and Bad USB Creator. The application's architecture is built with a clear User Interface and separate isolated modules for each tool. The Communication Channel handles data transmission and interaction between the various programs.</p>
+</article>
+
+<article id="architecture">
+    <h2>Architecture</h2>
+    <p>The application is structured as follows:</p>
+        <h1>Ethical Hacker Toolkit Architecture</h1>
+    <pre>
++---------------------+
+|   User Interface    |
++----------+----------+
+           |
++----------v----------+
+|   HACKING App       |
+|                     |
+| +-----------------+ |
+| |Encryption/      |-|---+
+| |Decryption Tool  | |   |
+| +-----------------+ |   |
+|                     |   |
+| +-----------------+ |   |
+| |PROGRAM 2        |-|-----> Communication Channel
+| +-----------------+ |   |
+|                     |   |
+| +-----------------+ |   |
+| |PROGRAM 3        |-|---+
+| +-----------------+ |
+|                     |
+| +-----------------+ |
+| |PROGRAM 4        | |
+| +-----------------+ |
+|                     |
+| +-----------------+ |
+| |Customization    | |
+| +-----------------+ |
+| +-----------------+ |
+| |Explanation      | |
+| +-----------------+ |
+|                     |
++---------------------+
+    </pre>
+    
+</article>
+
+<article id="class-level-design">
+    <h2>Class-Level Design</h2>
+    <p>The main components of the system are:</p>
+    <ol>
+        <li>Encryption/Decryption Tool</li>
+        <li>Packet Sniffer</li>
+        <li>MAC Spoofer</li>
+        <li>Bad USB Creator</li>
+    </ol>
+    <p>Each of these components serves a specific purpose within the application and has its own set of responsibilities.</p>
+</article>
+
+<article id="control-issues">
+    <h2>Control Issues</h2>
+    <p>Threading and external communication are important aspects of the application's design:</p>
+    <ul>
+        <li>Threading is used in the Packet Sniffer class to enable real-time packet capturing and analysis without blocking the user interface.</li>
+        <li>The Communication Channel handles the interaction between the various modules, allowing
+    them to exchange data and commands in a controlled manner. This ensures that each module operates in isolation and does not affect the others.</li>
+        <li>External communication is essential for some tools, such as the Packet Sniffer and MAC Spoofer, which interact with network interfaces and devices. Proper error handling and validation are implemented to prevent potential security risks and maintain application stability.</li>
+    </ul>
+    <p>In summary, the Ethical Hacker Toolkit is designed with a clear and modular architecture, allowing for easy expansion and maintenance. The control mechanisms in place ensure that the application operates efficiently and securely, making it a valuable tool for ethical hacking purposes.</p>
+</article>
+</body>
+</html>
