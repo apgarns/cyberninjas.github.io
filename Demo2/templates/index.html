@@ -6,9 +6,19 @@
     <title>Ethical Hacker Toolkit</title>
     <style>
         body {
-            background-color: red;
-            color: white;
+            background-image: url('https://media.tenor.com/Zp9f2I9FpFcAAAAd/anonimous-hacker.gif');
+            background-size: cover;
+    
+    
+    
+    height: 100vh;
+    padding:0;
+    margin:0;
             font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #ffffff;
         }
         .tool-container {
             display: flex;
@@ -17,22 +27,23 @@
             margin: 10px;
         }
         button {
-            background-color: tan;
-            color: black;
+            background-color: #0E6B0E;
+            color: white;
             font-size: 16px;
             padding: 10px;
             border: none;
-            cursor: pointer;
+            cursor: crosshair;
             border-radius: 5px;
             margin-top: 5px;
         }
         button:hover {
-            background-color: #bfa47e;
+            background-color: #00ff22;
         }
     </style>
 </head>
 <body>
     <h1>Ethical Hacker Toolkit</h1>
+
     <div class="tool-container">
         <h2>Packet Sniffer</h2>
         <button onclick="openPacketSniffer()">Open Packet Sniffer</button>
@@ -50,7 +61,6 @@
         <button onclick="openBadUSB()">Bad USB (.EXE)</button>
         <button onclick="showDescription('Bad USB')">About</button>
     </div>
-
 <script>
 
  function openPacketSniffer() {
