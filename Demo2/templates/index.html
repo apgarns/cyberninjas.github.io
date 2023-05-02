@@ -6,7 +6,7 @@
     <title>Ethical Hacker Toolkit</title>
     <style>
         body {
-            background-image: url('https://media.tenor.com/Zp9f2I9FpFcAAAAd/anonimous-hacker.gif');
+            background-image: url('https://wallpapercave.com/wp/wp2730030.gif');
             background-size: cover;
     
     
@@ -17,7 +17,7 @@
             font-family: Arial, sans-serif;
         }
 
-        h1 {
+        h1, h2 {
             color: #ffffff;
         }
         .tool-container {
@@ -144,25 +144,63 @@
         // Add other openX functions here
 
         function showDescription(tool) {
-            let description;
-            switch (tool) {
-                case 'encryption':
-                    description = 'The Encryption Tool allows you to encrypt and decrypt messages using a symmetric key algorithm. You can generate a key, use it to securely encrypt a message, and then share the key with the recipient to decrypt the message.';
-                    break;
-                case 'sniffer':
-                    description = 'The Packet Sniffer tool captures network packets transmitted over a specific network interface. It can help you analyze network traffic and troubleshoot network-related issues.';
-                    break;
-                case 'spoofer':
-                    description = 'The MAC Spoofer tool allows you to change the MAC address of your network interface. This can help you protect your privacy, bypass network restrictions, or test network security.';
-                    break;
-                case 'Bad USB':
-                    description = 'A Bad USB is a seemingly innocuous USB device, such as a flash drive or a charging cable, that has been modified with malicious software. When plugged into a computer, the Bad USB acts as an input device, such as a keyboard or mouse, and can execute a series of pre-programmed commands.';
-                    break;
-                default:
-                    description = 'No description available.';
+    let description;
+    let title;
+    switch (tool) {
+        case 'encryption':
+            title = 'Encryption Tool';
+            description = 'The Encryption Tool allows you to encrypt and decrypt messages using a symmetric key algorithm. You can generate a key, use it to securely encrypt a message, and then share the key with the recipient to decrypt the message.';
+            break;
+        case 'sniffer':
+            title = 'Packet Sniffer';
+            description = 'The Packet Sniffer tool captures network packets transmitted over a specific network interface. It can help you analyze network traffic and troubleshoot network-related issues.';
+            break;
+        case 'spoofer':
+            title = 'MAC Spoofer';
+            description = 'The MAC Spoofer tool allows you to change the MAC address of your network interface. This can help you protect your privacy, bypass network restrictions, or test network security.';
+            break;
+        case 'Bad USB':
+            title = 'Bad USB';
+            description = 'A Bad USB is a seemingly innocuous USB device, such as a flash drive or a charging cable, that has been modified with malicious software. When plugged into a computer, the Bad USB acts as an input device, such as a keyboard or mouse, and can execute a series of pre-programmed commands.';
+            break;
+        default:
+            title = 'No title available.';
+            description = 'No description available.';
+    }
+
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${title}</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
             }
-            alert(description);
-        }
+
+            h1 {
+                color: #0E6B0E;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>${title}</h1>
+        <p>${description}</p>
+        <img src="https://thumbs.gfycat.com/JitteryTanInchworm-max-1mb.gif" alt="GIF Image">
+        <img src="https://i.gzn.jp/img/2020/05/14/sha-256-animation/290.gif" alt="GIF Image">
+    </body>
+    </html>
+`);
+
+}
+
 
         document.getElementById("encryption-form").addEventListener("submit", async function (event) {
             event.preventDefault();
