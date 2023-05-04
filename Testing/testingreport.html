@@ -1,64 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cybersecurity Toolkit Test Report</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0 10%;
-            line-height: 1.6;
-        }
-        h1, h2 {
-            color: #333;
-        }
-    </style>
-</head>
-<body>
-
-<h1>Cybersecurity Toolkit Test Report</h1>
-
-<h2>1. Component Testing</h2>
-<p>In this section, we describe the unit and component testing performed for individual tools in the cybersecurity toolkit before integrating them into the main system. We discuss the test data, test cases, and the rationale behind the testing choices.</p>
-
-<h3>Encryption/Decryption Tool</h3>
-<p>Before integrating the encryption/decryption tool into the main system, we developed a stand-alone module to test the encryption and decryption functionality. We used a variety of test data, including plaintext strings, special characters, and various file types to ensure the module worked correctly with a wide range of input data. The test cases were designed to cover all the expected requirements, including key generation, encryption, and decryption.</p>
-
-<h3>Packet Sniffer</h3>
-<p>The packet sniffer component was developed and tested independently to ensure it captured packets effectively from different network interfaces. We tested the packet sniffer with various network traffic scenarios, including HTTP requests, file transfers, and streaming data, to ensure it could handle a wide range of network packets. Test data was chosen to cover different network protocols, packet sizes, and traffic loads to ensure the packet sniffer met the expected requirements.</p>
-
-<h3>MAC Address Spoofer</h3>
-<p>The MAC address spoofer was developed as a separate module and tested with various network interfaces to ensure it could effectively change the MAC address. Test cases included changing the MAC address to a random value, a specific value, and restoring the original MAC address. These tests covered the expected requirements for MAC address spoofing, and ensured that the module worked correctly before integrating it into the main system.</p>
-
-<h2>2. System Testing</h2>
-<p>System testing was performed by integrating all the components into the main cybersecurity toolkit program. The tests were designed to ensure that each tool could be launched independently and function correctly within the integrated system. Test data was selected based on a combination of normal usage scenarios and edge cases to ensure the system's reliability and robustness.</p>
-
-<p>We used a combination of manual testing and automated testing tools to perform system testing. Manual testing allowed us to simulate user interactions with the toolkit, while automated testing tools helped us validate the program's functionality, performance, and security. The results of the system testing demonstrated that the cybersecurity toolkit met all the expected requirements and functioned correctly.</p>
-
-<h2>3. Acceptance Testing</h2>
-<p>For acceptance testing, we used the acceptance criteria defined in our user stories to validate the implementation of each feature. Below is a list of user stories and their acceptance status:</p>
-
-<ol>
-    <li>As a user, I want to encrypt and decrypt messages using a symmetric key algorithm.
-        <ul>
-            <li>Status: Accepted</li>
-        </ul>
-    </li>
-    <li>As a user, I want to capture network packets transmitted over a specific network interface.
-        <ul>
-            <li>Status: Accepted</li>
-        </ul>
-    </li>
-   
-    <li>As a user, I want to change the MAC address of my network interface.
-        <ul>
-            <li>Status: Accepted</li>
-        </ul>
-    </li>
-</ol>
-
-<p>The acceptance testing process confirmed that each feature met the defined acceptance criteria and was considered complete by the end users. This validation ensured that the cybersecurity toolkit fulfilled its intended purpose and met the users' expectations.</p>
-
-</body>
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cybersecurity Toolkit Test Report</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              margin: 0 10%;
+              line-height: 1.6;
+          }
+          h1, h2 {
+              color: #333;
+          }
+      </style>
+  </head>
+  <body>
+  
+  <h1>Cybersecurity Toolkit Test Report</h1>
+  
+  <h2>1. Component Testing</h2>
+  <p>In this section, we describe the unit and component testing performed for individual tools in the cybersecurity toolkit before integrating them into the main system. We discuss the test data, test cases, and the rationale behind the testing choices.</p>
+  
+  <h3>Encryption/Decryption Tool</h3>
+  <p>Before integrating the encryption/decryption tool into the main system, we developed a stand-alone module to test the encryption and decryption functionality. We used a variety of test data, including plaintext strings, special characters, and various file types to ensure the module worked correctly with a wide range of input data. The test cases were designed to cover all the expected requirements, including key generation, encryption, and decryption.</p>
+  
+  <h3>Steganography tool</h3>
+  <p>The steganography tool helps you understand how another type of encryption works and it helps you understand how it functions. We tested this program with a variety of images and encrypted messages inside them and at the same time decrypting them to ensure that the encrypted message remained the same.</p>
+  <h3>Ransom cat</h3>
+  <p>The ransom cat is a component that teaches you what would happen in the case that you were infected with a ransomware virus, in this case the program is not harmful but it’s just for educational purposes. We test this program with a document file that gives you the key when you decrypt it via the stenography tool.</p>
+  <h3>Password checker</h3>
+  <p>The password checker tool enables you to test and grab an idea of how secure a password is and how long it would take to brute force to gain access to your password. We test the program with various types of passwords and for each test the output was different depending on how strong the password is.</p>
+  <h2>2. System Testing</h2>
+  <p>The ransom cat is a component that teaches you what would happen in the case that you were infected with a ransomware virus, in this case the program is not harmful but it’s just for educational purposes. We test this program with a document file that gives you the key when you decrypt it via the stenography tool.</p>
+  <p>We used a combination of manual testing and automated testing tools to perform system testing. Manual testing allowed us to simulate user interactions with the toolkit, while automated testing tools helped us validate the program's functionality, performance, and security. The results of the system testing demonstrated that the cybersecurity toolkit met all the expected requirements and functioned correctly.</p>
+  
+  <h2>3. Acceptance Testing</h2>
+  <p>For acceptance testing, we used the acceptance criteria defined in our user stories to validate the implementation of each feature. Below is a list of user stories and their acceptance status:</p>
+  
+  <ol>
+      <li>As a user, I want to encrypt and decrypt messages using a symmetric key algorithm.
+          <ul>
+              <li>Status: Accepted</li>
+          </ul>
+      </li>
+      <li>As a user, I want to capture network packets transmitted over a specific network interface.
+          <ul>
+              <li>Status: Accepted</li>
+          </ul>
+      </li>
+     
+      <li>As a user, I want to change the MAC address of my network interface.
+          <ul>
+              <li>Status: Accepted</li>
+          </ul>
+      </li>
+  </ol>
+  
+  <p>The acceptance testing process confirmed that each feature met the defined acceptance criteria and was considered complete by the end users. This validation ensured that the cybersecurity toolkit fulfilled its intended purpose and met the users' expectations.</p>
+  
+  </body>
+  </html>
