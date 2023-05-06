@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ethical Hacker Toolkit</title>
     <style>
         body {
             background-image: url('https://wallpapercave.com/wp/wp2730030.gif');
             background-size: cover;
-    
-    
-    
-    height: 100vh;
-    padding:0;
-    margin:0;
+            height: 100vh;
+            padding:0;
+            margin:0;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1, h2 {
@@ -23,7 +24,7 @@
         .tool-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: stretch;
             margin: 10px;
         }
         button {
@@ -39,178 +40,691 @@
         button:hover {
             background-color: #00ff22;
         }
+
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
     <h1>Ethical Hacker Toolkit</h1>
 
-    <div class="tool-container">
-        <h2>Packet Sniffer</h2>
-        <button onclick="openPacketSniffer()">Open Packet Sniffer</button>
-        <button onclick="showDescription('sniffer')">About</button>
-    </div>
-
-    <div class="tool-container">
-        <h2>MAC Spoofer</h2>
-        <button onclick="openMacSpoofer()">Open MAC Spoofer</button>
-        <button onclick="showDescription('spoofer')">About</button>
-    </div>
     
-    <div class="tool-container">
-        <h2>Bad USB</h2>
-        <button onclick="openBadUSB()">Bad USB (.EXE)</button>
-        <button onclick="showDescription('Bad USB')">About</button>
+    <div id="description-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="description-text"></p>
+        </div>
     </div>
-<script>
 
- function openPacketSniffer() {
-            // Code to open packet_sniffer.py
-            console.log("Open Packet Sniffer");
-        }
-
-        function openMacSpoofer() {
-            // Code to open mac_spoofer.py
-            console.log("Open MAC Spoofer");
-        }
-        
-        function openBadUSB() {
-            // Code to open mac_spoofer.py
-            console.log("Open Bad USB");
-        }
-
-        function showDescription(tool) {
-            let description;
-            switch (tool) {
-                case 'encryption':
-                    description = 'The Encryption Tool allows you to encrypt and decrypt messages using a symmetric key algorithm. You can generate a key, use it to securely encrypt a message, and then share the key with the recipient to decrypt the message.';
-                    break;
-                case 'sniffer':
-                    description = 'The Packet Sniffer tool captures network packets transmitted over a specific network interface. It can help you analyze network traffic and troubleshoot network-related issues.';
-                    break;
-                case 'spoofer':
-                    description = 'The MAC Spoofer tool allows you to change the MAC address of your network interface. This can help you protect your privacy, bypass network restrictions, or test network security.';
-                    break;
-                case 'Bad USB':
-                    description = 'A Bad USB is a seemingly innocuous USB device, such as a flash drive or a charging cable, that has been modified with malicious software. When plugged into a computer, the Bad USB acts as an input device, such as a keyboard or mouse, and can execute a series of pre-programmed commands.';
-                    break;
-                default:
-                    description = 'No description available.';
-            }
-            alert(description);
-        }
-    </script>
-
-    
-    <!-- Encryption Tool -->
     <div class="tool-container">
         <h2>Encryption Tool</h2>
-        <button onclick="openEncryptionTool()">Open Encryption Tool</button>
-        <button onclick="showDescription('encryption')">About</button>
-    </div>
-    <div class="tool-container" id="encryption-tool" style="display: none;">
-        <h2>Encryption Tool - SHA-256</h2>
-        <form id="encryption-form">
-            <label for="user_input">Enter a string to encrypt using SHA-256:</label>
-            <input type="text" id="user_input" name="user_input">
-            <button type="submit">Encrypt</button>
-        </form>
-        <p id="encrypted-input-result"></p>
+        <button onclick="showDescription('encryption')">About Encryption</button>
+        <button onclick="openEncryptionWindow()">Try It Out</button>
     </div>
 
-    <!-- Other tool containers -->
-    <!-- ... -->
+    <div class="tool-container">
+        <h2>Steganography Tool</h2>
+        <button id="about-steganography-button">About Steganography</button>
+        <button onclick="openSteganographyWindow()">Try It Out</button>
+    </div>
+    
 
-    <script>
-        document.getElementById("encryption-form").addEventListener("submit", async function (event) {
-            event.preventDefault();
-            const userInput = document.getElementById("user_input").value;
+    <div class="tool-container">
+        <h2>Ransom Cat</h2>
+        <button onclick="openCryptoRescueWindow()">RESCUE CRYPTO!</button>
+    </div>
+    
+    <div class="tool-container">
+    <h2>Meta Data Tool</h2>
+    <button onclick="openMetaDataToolWindow()">Meta Data Tool</button>
+    <div id="meta-data-tool" style="display: none;">
+        <p>Upload a file to extract Meta Data</p>
+        <input type="file" id="input-file" accept=".jpg,.jpeg,.png,.pdf">
+        <button id="extract-metadata">Extract Metadata</button>
+        <div id="metadata-display"></div>
+    </div>
+</div>
 
-            const response = await fetch("/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ user_input: userInput })
-            });
+<script>
 
-            const { encrypted_input } = await response.json();
-            document.getElementById("encrypted-input-result").innerText = `Encrypted input (SHA-256): ${encrypted_input}`;
-        });
+    function openEncryptionTool() {
+        console.log("Open Encryption Tool");
+    }
 
-        function openEncryptionTool() {
-            document.getElementById("encryption-tool").style.display = "block";
-        }
 
-        // Add other openX functions here
-
-        function showDescription(tool) {
-    let description;
+    function showDescription(tool) {
     let title;
+    let description;
     switch (tool) {
         case 'encryption':
-            title = 'Encryption Tool';
-            description = 'The Encryption Tool allows you to encrypt and decrypt messages using a symmetric key algorithm. You can generate a key, use it to securely encrypt a message, and then share the key with the recipient to decrypt the message.';
+        title = 'Encryption/Decryption Tool';
+            description = `                          The Encryption Tool using SHA-256 is a utility that provides secure hashing
+                           functionality using the SHA-256 (Secure Hash Algorithm 256-bit) algorithm.<br><br>
+                           SHA-256 is a member of the SHA-2 family of cryptographic hash functions,
+                           which are designed by the National Security Agency (NSA) and published
+                           by the National Institute of Standards and Technology (NIST) as a
+                           U.S. Federal Information Processing Standard (FIPS).<br><br>
+                           
+                           SHA-256 generates a fixed-size output (256 bits or 32 bytes) from any
+                           input data, and it is a one-way function, which means it is computationally
+                           infeasible to reverse the process and obtain the original input data from the hash.
+                           The algorithm exhibits essential cryptographic properties such as collision resistance,
+                           preimage resistance, and second preimage resistance, making it suitable for a variety of
+                           security applications.<br><br>
+                           
+                           While it is not an encryption tool in the traditional sense, as it doesn't allow for decryption
+                           of data, it is widely used in scenarios such as password storage, data integrity checks, and digital
+                           signature verification. When storing passwords, it is a best practice to hash the password with a
+                           unique salt and store the hash instead of the plaintext password, ensuring that even if the
+                           database is compromised, the actual passwords remain secure. In data integrity checks, the hash
+                           can be used to verify that data has not been tampered with or corrupted, as even a small change in
+                           the input data will result in a completely different hash.<br><br>
+                           
+                           Please note that while SHA-256 is still considered secure, it is recommended to use more advanced
+                           hashing algorithms like Argon2, bcrypt, or scrypt for password storage, as they are specifically
+                           designed to be more resistant to brute-force and dictionary attacks.
+                           
+                           
+                           `;
+            openNewWindow(title, description); // Open the new window only for the encryption tool
             break;
-        case 'sniffer':
-            title = 'Packet Sniffer';
-            description = 'The Packet Sniffer tool captures network packets transmitted over a specific network interface. It can help you analyze network traffic and troubleshoot network-related issues.';
+            case 'steganography':
+            title = 'Steganography Tool';
+            const steganographyDescription = `Our Steganography Tool allows users to hide and reveal text messages within an image. Steganography is the art and science of concealing information within other data, such as images, audio files, or text. In this tool, we use a simple technique called Least Significant Bit (LSB) steganography to hide the text message within the image.<br><br>
+
+            When hiding the text, the tool follows these steps:<br>
+            <ol>
+                <li>The user selects an image file and enters the text they want to hide.</li>
+                <li>The tool converts the text into its binary representation.</li>
+                <li>For each character in the binary text, the tool modifies the least significant bit of a pixel's red channel in the image.</li>
+                <li>The length of the hidden text is stored in the first 32 pixels, allowing the tool to know how much data to retrieve when decoding.</li>
+                <li>The tool generates a new image with the hidden text and provides it to the user.</li>
+            </ol><br>
+
+            To reveal the hidden text, the tool performs the following steps:<br>
+            <ol>
+                <li>The user selects the image file with the hidden text.</li>
+                <li>The tool reads the length of the hidden text from the first 32 pixels.</li>
+                <li>For each pixel in the image, the tool retrieves the least significant bit of the red channel and reconstructs the binary representation of the hidden text.</li>
+                <li>The binary text is then converted back into the original text message.</li>
+            </ol><br>
+
+            Please note that this tool uses a simple steganography method and is intended for educational and demonstration purposes. It should not be considered a secure method for hiding sensitive or confidential information.`;
+            openNewWindow2(title, description); // Open the new window for the steganography tool
             break;
         case 'spoofer':
             title = 'MAC Spoofer';
-            description = 'The MAC Spoofer tool allows you to change the MAC address of your network interface. This can help you protect your privacy, bypass network restrictions, or test network security.';
+            description = 'FILL';
             break;
         case 'Bad USB':
             title = 'Bad USB';
-            description = 'A Bad USB is a seemingly innocuous USB device, such as a flash drive or a charging cable, that has been modified with malicious software. When plugged into a computer, the Bad USB acts as an input device, such as a keyboard or mouse, and can execute a series of pre-programmed commands.';
+            description = ' ';
             break;
         default:
             title = 'No title available.';
             description = 'No description available.';
     }
 
+    if (tool !== 'encryption') {
+        showModal(title, description);
+    }
+}
+function showModal(title, description) {
+    const modal = document.getElementById("description-modal");
+    document.getElementById("description-text").innerHTML = `<h2>${title}</h2>${description}`;
+    modal.style.display = "block";
+    document.querySelector(".close").addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+}
+
+function openEncryptionWindow() {
+        const encryptionWindowTitle = 'Encryption/Decryption Tool';
+        const newWindow = window.open('', '_blank');
+        newWindow.document.write('<!DOCTYPE html>');
+        newWindow.document.write('<html lang="en">');
+        newWindow.document.write('<head>');
+        newWindow.document.write('<meta charset="UTF-8">');
+        newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+        newWindow.document.write(`<title>'${encryptionWindowTitle}'</title>`);
+        newWindow.document.write('<style>');
+        newWindow.document.write('</style>');
+        newWindow.document.write('</head>');
+        newWindow.document.write('<body>');
+        newWindow.document.write('<h1>Encryption/Decryption Tool</h1>');
+        newWindow.document.write('<form id="encryption-form" onsubmit="event.preventDefault(); window.opener.encryptTextInNewWindow(window);">');
+        newWindow.document.write('<label for="user_input">Enter text to encrypt:</label>');
+        newWindow.document.write('<input type="text" id="user_input">');
+        newWindow.document.write('<button id="encrypt-button">Encrypt</button>');
+        newWindow.document.write('</form>');
+        newWindow.document.write('<p id="encrypted-input-result"></p>');
+        newWindow.document.write('<form id="decryption-form" onsubmit="event.preventDefault(); window.opener.decryptTextInNewWindow(window);">');
+        newWindow.document.write('<label for="encrypted_input">Enter encrypted text:</label>');
+        newWindow.document.write('<input type="text" id="encrypted_input">');
+        newWindow.document.write('<button id="decrypt-button">Decrypt</button>');
+        newWindow.document.write('</form>');
+        newWindow.document.write('<p id="decrypted-input-result"></p>');
+        newWindow.document.write('</body>');
+        newWindow.document.write('</html>');
+    }
+
+    async function generateSecretKey() {
+        return await crypto.subtle.generateKey(
+            {
+                name: "AES-GCM",
+                length: 256
+            },
+            true,
+            ["encrypt", "decrypt"]
+        );
+    }
+
+    const secretKeyPromise = generateSecretKey();
+
+    async function encryptTextInNewWindow(newWindow) {
+        const userInput = newWindow.document.getElementById("user_input").value;
+        const secretKey = await secretKeyPromise;
+
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        const encryptedData = await crypto.subtle.encrypt(
+            {
+                name: "AES-GCM",
+                iv: iv
+            },
+            secretKey,
+            new TextEncoder().encode(userInput)
+        );
+
+        const encryptedDataWithIv = new Uint8Array(12 + encryptedData.byteLength);
+        encryptedDataWithIv.set(iv);
+        encryptedDataWithIv.set(new Uint8Array(encryptedData), 12);
+
+        const encryptedInputHex = Array.from(encryptedDataWithIv).map(b => b.toString(16).padStart(2, '0')).join('');
+        newWindow.document.getElementById("encrypted-input-result").innerText = 'Encrypted input (AES-GCM): ' + encryptedInputHex;
+    }
+
+async function decryptTextInNewWindow(newWindow) {
+        const encryptedInput = newWindow.document.getElementById("encrypted_input").value;
+        const secretKey = await secretKeyPromise;
+
+        const encryptedDataWithIv = new Uint8Array(encryptedInput.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        const iv = encryptedDataWithIv.slice(0, 12);
+        const encryptedData = encryptedDataWithIv.slice(12);
+
+        try {
+            const decryptedData = await crypto.subtle.decrypt(
+                {
+                    name: "AES-GCM",
+                    iv: iv
+                },
+                secretKey,
+                encryptedData
+            );
+
+            const decryptedInput = new TextDecoder().decode(decryptedData);
+            newWindow.document.getElementById("decrypted-input-result").innerText = 'Decrypted input: ' + decryptedInput;
+        } catch (error) {
+            newWindow.document.getElementById("decrypted-input-result").innerText = 'Decryption failed: ' + error;
+        }
+    }
+
+
+    function openAboutSteganographyWindow() {
+    const aboutSteganographyTitle = 'About Steganography';
+    const steganographyDescription = `Description:.<br><br>
+
+Our simple image-based steganography tool allows users to hide text within an image and later reveal the hidden text from the modified image. This technique is called steganography, and it provides a way to transmit secret messages hidden within seemingly innocuous content..<br><br>
+
+How It Works:.<br><br>
+
+    Encoding: The user uploads an image and enters the text they want to hide in the image. When the "Hide Text" button is clicked, the tool processes the image and hides the text within it.
+
+    The tool first converts the input text into binary data (a sequence of 0s and 1s). It also calculates the length of the text and converts it into a 32-bit binary number.
+
+    Next, the tool reads the image's pixel data and starts modifying the least significant bit (LSB) of the red channel of each pixel. The first 32 pixels store the binary representation of the text length. The following pixels store the binary representation of the text itself.
+
+    By changing only the LSB, the overall appearance of the image remains almost unchanged, and the hidden text is difficult to detect without knowing the decoding process..<br><br>
+
+    Decoding: The user uploads the modified image, and when the "Reveal Text" button is clicked, the tool extracts the hidden text from the image.
+
+    The tool first reads the image's pixel data and extracts the first 32 bits from the red channel's LSBs. It converts these bits into a number representing the length of the hidden text.
+
+    Then, the tool extracts the following bits, corresponding to the hidden text, and converts them back into the original characters. Finally, it displays the hidden text on the screen..<br><br>
+
+Please note that this simple steganography tool is meant for educational and demonstration purposes only. The technique used in this tool is relatively basic and might not provide a high level of security against sophisticated steganalysis methods. For more advanced and secure steganography, consider using specialized software and techniques.
+
+
+`;
     const newWindow = window.open('', '_blank');
+    newWindow.document.write('<!DOCTYPE html>');
+    newWindow.document.write('<html lang="en">');
+    newWindow.document.write('<head>');
+    newWindow.document.write('<meta charset="UTF-8">');
+    newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    newWindow.document.write(`<title>${aboutSteganographyTitle}</title>`);
+    newWindow.document.write('<style>');
     newWindow.document.write(`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${title}</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-            }
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+        }
 
-            h1 {
-                color: #0E6B0E;
-            }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-            p {
-                font-size: 16px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>${title}</h1>
-        <p>${description}</p>
-        <img src="https://thumbs.gfycat.com/JitteryTanInchworm-max-1mb.gif" alt="GIF Image">
-        <img src="https://i.gzn.jp/img/2020/05/14/sha-256-animation/290.gif" alt="GIF Image">
-    </body>
-    </html>
-`);
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
+        .description-text {
+            white-space: pre-wrap;
+        }
+
+        body {
+            background-image: url('https://tinyurl.com/2skx9ayf');
+            background-size: cover;
+            height: 100vh;
+            padding:0;
+            margin:0;
+            font-family: Arial, sans-serif;
+            display: table;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+            color: white;
+            padding: 10px;
+            border:  none;
+            cursor: crosshair;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        h1 {
+            color: white;
+        }
+        p {
+            font-size: 16px;
+        }
+    `);
+    newWindow.document.write('</style>');
+    newWindow.document.write('</style>');
+    newWindow.document.write('</head>');
+    newWindow.document.write('<body>');
+    newWindow.document.write(`
+        <div class="content-container">
+        <h1>${aboutSteganographyTitle}</h1>
+        <div class="description-text">${steganographyDescription}</div>
+        <img src='https://www.cybervie.com/wp-content/uploads/2021/02/Black-Moon-Blog-Banner-1024x576.gif' alt="Image">
+        <img src='https://ichef.bbci.co.uk/news/466/mcs/media/images/48225000/gif/_48225399_steganography_466.gif' alt="Image">
+        </div>
+    `);
+    newWindow.document.write('</body>');
+    newWindow.document.write('</html>');
 }
 
 
-        document.getElementById("encryption-form").addEventListener("submit", async function (event) {
-            event.preventDefault();
-            const userInput = document.getElementById("user_input").value;
-            const encryptedInput = new TextEncoder().encode(userInput);
-            const digest = await crypto.subtle.digest('SHA-256', encryptedInput);
-            const encryptedInputArray = Array.from(new Uint8Array(digest));
-            const encryptedInputHex = encryptedInputArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            document.getElementById("encrypted-input-result").innerText = `Encrypted input (SHA-256): ${encryptedInputHex}`;
-        });
-    </script>
+document.getElementById('about-steganography-button').addEventListener('click', openAboutSteganographyWindow);
+
+function openSteganographyWindow() {
+    const steganographyWindowTitle = 'Steganography Tool';
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write('<!DOCTYPE html>');
+    newWindow.document.write('<html lang="en">');
+    newWindow.document.write('<head>');
+    newWindow.document.write('<meta charset="UTF-8">');
+    newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    newWindow.document.write(`<title>${steganographyWindowTitle}</title>`);
+    newWindow.document.write('<style>');
+    newWindow.document.write('</style>');
+    newWindow.document.write('</head>');
+    newWindow.document.write('<body>');
+    newWindow.document.write('<h1>Steganography Tool</h1>');
+    newWindow.document.write('<input type="file" id="input-image" accept="image/*">');
+    newWindow.document.write('<textarea id="input-text" placeholder="Enter text to hide in the image"></textarea>');
+    newWindow.document.write('<button id="encode-button">Hide Text</button>');
+    newWindow.document.write('<button id="decode-button">Reveal Text</button>');
+    newWindow.document.write('<p id="stegano-result"></p>');
+    newWindow.document.write('<script>');
+    const inputImage = newWindow.document.getElementById('input-image');
+    const inputText = newWindow.document.getElementById('input-text');
+    const encodeButton = newWindow.document.getElementById('encode-button');
+    const decodeButton = newWindow.document.getElementById('decode-button');
+    const steganoResult = newWindow.document.getElementById('stegano-result');
+    
+
+
+    encodeButton.addEventListener('click', function() {
+        if (inputImage.files.length === 0) {
+            alert('Please select an image file');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                const encodedImage = encodeText(img, inputText.value);
+                steganoResult.innerHTML = 'Text hidden in the image. Right-click to save the image.';
+                steganoResult.appendChild(encodedImage);
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(inputImage.files[0]);
+    });
+
+    decodeButton.addEventListener('click', function() {
+        if (inputImage.files.length === 0) {
+            alert('Please select an image file');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                const decodedText = decodeText(img);
+                steganoResult.innerHTML = 'Hidden text: ' + decodedText;
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(inputImage.files[0]);
+    });
+
+    function encodeText(image, text) {
+        const canvas = newWindow.document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(image, 0, 0);
+
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const binaryText = text.split('').map(char => char.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+        const textLengthBinary = text.length.toString(2).padStart(32, '0');
+
+        for (let i = 0; i < 32; i++) {
+            const pixelIndex = i * 4;
+            imgData.data[pixelIndex] = (imgData.data[pixelIndex] & 0xFE) | parseInt(textLengthBinary[i]);
+        }
+
+        for (let i = 0; i < binaryText.length; i++) {
+            const pixelIndex = (i + 32) * 4;
+            imgData.data[pixelIndex] = (imgData.data[pixelIndex] & 0xFE) | parseInt(binaryText[i]);
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+
+        const encodedImage = new Image();
+        encodedImage.src = canvas.toDataURL();
+        return encodedImage;
+    }
+    function decodeText(image) {
+    const canvas = newWindow.document.createElement('canvas');
+    canvas.width = image.width;
+    canvas.height = image.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0);
+
+    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    let textLengthBinary = '';
+    for (let i = 0; i < 32; i++) {
+        const pixelIndex = i * 4;
+        textLengthBinary += imgData.data[pixelIndex] & 1;
+    }
+    const textLength = parseInt(textLengthBinary, 2);
+
+    let binaryText = '';
+    for (let i = 0; i < textLength * 8; i++) {
+        const pixelIndex = (i + 32) * 4;
+        binaryText += imgData.data[pixelIndex] & 1;
+    }
+
+    let decodedText = '';
+    for (let i = 0; i < binaryText.length; i += 8) {
+        const charCode = parseInt(binaryText.slice(i, i + 8), 2);
+        decodedText += String.fromCharCode(charCode);
+    }
+
+    return decodedText;
+}
+}
+    newWindow.document.write('<//script>');
+    newWindow.document.write('</body>');
+    newWindow.document.write('</html>');
+    
+
+    function openCryptoRescueWindow() {
+    const rescueCryptoTitle = 'Rescue Crypto';
+    const rescueCryptoStoryline = `
+        <p>Crypto, a beloved cat, has been kidnapped. The kidnappers have left a ransom note in the form of a PDF letter and an image containing hidden information. Your mission is to use the provided files to find Crypto's kidnappers and rescue the cat.</p>
+        <p>Follow the step-by-step guide below to decrypt the hidden message in the PDF and extract valuable metadata from the image to track down the kidnappers.<br></br>
+            To start the investgation on who has Crypto, first download the PNG image. Then using our Steganograpy Tool upload the image file to extract the hidden decipher key inside the image.<br></br>
+            Next, after decoding the hidden message in the PDF file. We will used our "Meta Data Tool" to figure out the name of the person responsible and find out there location! </p>
+    `;
+
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write('<!DOCTYPE html>');
+    newWindow.document.write('<html lang="en">');
+    newWindow.document.write('<head>');
+    newWindow.document.write('<meta charset="UTF-8">');
+    newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    newWindow.document.write(`<title>${rescueCryptoTitle}</title>`);
+    newWindow.document.write('<style>');
+    newWindow.document.write(`
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .description-text {
+            white-space: pre-wrap;
+        }
+
+        body {
+            background-image: url('https://i.ytimg.com/vi/KMDPqUEPoZI/hqdefault.jpg');
+            background-size: cover;
+            height: 100vh;
+            padding:0;
+            margin:0;
+            font-family: Arial, sans-serif;
+            display: table;
+            flex-direction: column;
+            align-items: center;
+            font-size: 24px;
+            color: red;
+            padding: 10px;
+            border:  none;
+            cursor: crosshair;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        h1 {
+            color: red;
+        }
+        p {
+            font-size: 16px;
+        }
+
+        
+    `);
+    newWindow.document.write('</style>');
+    newWindow.document.write('</head>');
+    newWindow.document.write('<body>');
+    newWindow.document.write(`<h1>${rescueCryptoTitle}</h1>`);
+    newWindow.document.write(rescueCryptoStoryline);
+    newWindow.document.write('</body>');
+    newWindow.document.write('</html>');
+    newWindow.document.write('<div>');
+    newWindow.document.write('<p>Download the ransom files:</p>');
+    newWindow.document.write('<a href="https://www.4shared.com/s/fQsradnOlku" download="AbductedFeline.png">Download Ransom Image (PNG)</a>');
+    newWindow.document.write('<br>');
+    newWindow.document.write('<a href="https://www.4shared.com/s/f6fiqggCCjq" download="WE HAVE YOUR CAT.pdf">Download Ransom Letter (PDF)</a>');
+    newWindow.document.write('</div>');
+    newWindow.document.write('</body>');
+    newWindow.document.write('</html>');
+
+}
+
+document.getElementById('rescue-crypto-button').addEventListener('click', openCryptoRescueWindow);
+
+
+function openMetaDataToolWindow() {
+    const metaDataToolTitle = 'Meta Data Tool';
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write('<!DOCTYPE html>');
+    newWindow.document.write('<html lang="en">');
+    newWindow.document.write('<head>');
+    newWindow.document.write('<meta charset="UTF-8">');
+    newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    newWindow.document.write(`<title>${metaDataToolTitle}</title>`);
+    newWindow.document.write('</head>');
+    newWindow.document.write('<body>');
+    newWindow.document.write('<h1>Meta Data Tool</h1>');
+    newWindow.document.write('<iframe id="metadata-iframe" src="metadataExtractor.html" style="width: 100%; height: 80vh; border: none;"></iframe>');
+    newWindow.document.write('</body>');
+    newWindow.document.write('</html>');
+
+    newWindow.addEventListener('DOMContentLoaded', () => {
+        const iframe = newWindow.document.getElementById('metadata-iframe');
+        iframe.contentWindow.onload = () => {
+            iframe.contentWindow.postMessage('init', '*');
+        };
+    });
+}
+
+
+function openNewWindow(title, description) {
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <style>
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .description-text {
+            white-space: pre-wrap;
+        }
+
+        body {
+            background-image: url('https://tinyurl.com/2skx9ayf');
+            background-size: cover;
+            height: 100vh;
+            padding:0;
+            margin:0;
+            font-family: Arial, sans-serif;
+            display: table;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+            color: white;
+            padding: 10px;
+            border:  none;
+            cursor: crosshair;
+            border-radius: 5px;
+            margin-top: 5px;
+}
+
+        h1 {
+            color: white;
+        }
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-container">
+    <h1>${title}</h1>
+    <div class="description-text">${description}</div>
+    <img src='https://thumbs.gfycat.com/JitteryTanInchworm-max-1mb.gif' alt="GIF Image">
+    <img src='https://i.gzn.jp/img/2020/05/14/sha-256-animation/290.gif' alt="GIF Image">
+    </div>
+
+</body>
+</html>
+
+`);
+}
+
+</script>
 </body>
 </html>
