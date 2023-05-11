@@ -107,8 +107,158 @@
     </div>
 </div>
 
-<script>
+<div class="tool-container">
+    <h2>Check Password</h2>
+    <button id="password-checker-button">Password Checker</button>
+</div>
+</div>
 
+<button id="source-credits-button">Source Credits</button>
+
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+document.getElementById("password-checker-button").addEventListener("click", openPasswordCheckerWindow);
+});
+
+function openSourceCredits() {
+    const sourceCreditsTitle = 'Source Credits';
+    const sourceCreditsList = `
+        <ul>
+            <li>Acknowledgments and thanks to our sourced images and gifs:</li>
+            <br></br>
+            <li>Source Wallpaper Background: <a href="https://wallpapercave.com/wp/wp2730030.gif" target="_blank">Wallpapercave.com</a></li>
+            <li>Tool Wallpaper Background: <a href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/387eb18b-ab74-4503-a97f-b5e6143eb21d/d2eybzq-986ca967-9887-4244-8deb-4f04d43f47bd.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzM4N2ViMThiLWFiNzQtNDUwMy1hOTdmLWI1ZTYxNDNlYjIxZFwvZDJleWJ6cS05ODZjYTk2Ny05ODg3LTQyNDQtOGRlYi00ZjA0ZDQzZjQ3YmQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.JGl1K9rfDp9tW8vCn0FuCi2PsM9srZYLRQIje7eZnRw" target="_blank">wixmp.com</a></li>
+            <li>Encryption Visual Aid 1: <a href="https://thumbs.gfycat.com/JitteryTanInchworm-max-1mb.gif" target="_blank">gfycat.com</a></li>
+            <li>Encryption Visual Aid 2: <a href="https://i.gzn.jp/img/2020/05/14/sha-256-animation/290.gif" target="_blank">gzn.jp</a></li>
+            <li>Steganography Visual Aid 1: <a href="https://www.cybervie.com/wp-content/uploads/2021/02/Black-Moon-Blog-Banner-1024x576.gif" target="_blank">cybervie.com</a></li>
+            <li>Steganography Visual Aid 2: <a href="https://ichef.bbci.co.uk/news/466/mcs/media/images/48225000/gif/_48225399_steganography_466.gif" target="_blank">bbci.co.uk</a></li>
+            <li>Rescue Crypto Background Wallpaper: <a href="https://i.ytimg.com/vi/KMDPqUEPoZI/hqdefault.jpg" target="_blank">ytimg.com</a></li>
+
+            
+            <!-- Add more sources here -->
+        </ul>
+    `;
+
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.left = '0';
+    modal.style.top = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = '1000';
+
+    const modalContent = document.createElement('div');
+    modalContent.style.backgroundColor = '#fff';
+    modalContent.style.padding = '20px';
+    modalContent.style.borderRadius = '5px';
+    modalContent.style.maxWidth = '80%';
+    modalContent.style.maxHeight = '80%';
+    modalContent.style.overflowY = 'auto';
+
+    const closeButton = document.createElement('span');
+    closeButton.innerHTML = '&times;';
+    closeButton.style.float = 'right';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.fontSize = '24px';
+    closeButton.style.fontWeight = 'bold';
+
+    closeButton.onclick = () => {
+        document.body.removeChild(modal);
+    };
+
+    const modalTitle = document.createElement('h2');
+    modalTitle.innerText = sourceCreditsTitle;
+
+    const modalList = document.createElement('div');
+    modalList.innerHTML = sourceCreditsList;
+
+    modalContent.appendChild(closeButton);
+    modalContent.appendChild(modalTitle);
+    modalContent.appendChild(modalList);
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+}
+
+document.getElementById('source-credits-button').addEventListener('click', openSourceCredits);
+
+
+function openNewWindow(title, description) {
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <style>
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .description-text {
+            white-space: pre-wrap;
+        }
+        body {
+            background-image: url('https://tinyurl.com/2skx9ayf');
+            background-size: cover;
+            height: 100vh;
+            padding:0;
+            margin:0;
+            font-family: Arial, sans-serif;
+            display: table;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+            color: white;
+            padding: 10px;
+            border:  none;
+            cursor: crosshair;
+            border-radius: 5px;
+            margin-top: 5px;
+}
+        h1 {
+            color: white;
+        }
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+    <h1>${title}</h1>
+    <div class="description-text">${description}</div>
+    <img src='https://thumbs.gfycat.com/JitteryTanInchworm-max-1mb.gif' alt="GIF Image">
+    <img src='https://i.gzn.jp/img/2020/05/14/sha-256-animation/290.gif' alt="GIF Image">
+    </div>
+</body>
+</html>
+`);
+}
     function openEncryptionTool() {
         console.log("Open Encryption Tool");
     }
@@ -153,7 +303,6 @@
             case 'steganography':
             title = 'Steganography Tool';
             const steganographyDescription = `Our Steganography Tool allows users to hide and reveal text messages within an image. Steganography is the art and science of concealing information within other data, such as images, audio files, or text. In this tool, we use a simple technique called Least Significant Bit (LSB) steganography to hide the text message within the image.<br><br>
-
             When hiding the text, the tool follows these steps:<br>
             <ol>
                 <li>The user selects an image file and enters the text they want to hide.</li>
@@ -162,7 +311,6 @@
                 <li>The length of the hidden text is stored in the first 32 pixels, allowing the tool to know how much data to retrieve when decoding.</li>
                 <li>The tool generates a new image with the hidden text and provides it to the user.</li>
             </ol><br>
-
             To reveal the hidden text, the tool performs the following steps:<br>
             <ol>
                 <li>The user selects the image file with the hidden text.</li>
@@ -170,7 +318,6 @@
                 <li>For each pixel in the image, the tool retrieves the least significant bit of the red channel and reconstructs the binary representation of the hidden text.</li>
                 <li>The binary text is then converted back into the original text message.</li>
             </ol><br>
-
             Please note that this tool uses a simple steganography method and is intended for educational and demonstration purposes. It should not be considered a secure method for hiding sensitive or confidential information.`;
             openNewWindow2(title, description); // Open the new window for the steganography tool
             break;
@@ -294,28 +441,16 @@ async function decryptTextInNewWindow(newWindow) {
     function openAboutSteganographyWindow() {
     const aboutSteganographyTitle = 'About Steganography';
     const steganographyDescription = `Description:.<br><br>
-
 Our simple image-based steganography tool allows users to hide text within an image and later reveal the hidden text from the modified image. This technique is called steganography, and it provides a way to transmit secret messages hidden within seemingly innocuous content..<br><br>
-
 How It Works:.<br><br>
-
     Encoding: The user uploads an image and enters the text they want to hide in the image. When the "Hide Text" button is clicked, the tool processes the image and hides the text within it.
-
     The tool first converts the input text into binary data (a sequence of 0s and 1s). It also calculates the length of the text and converts it into a 32-bit binary number.
-
     Next, the tool reads the image's pixel data and starts modifying the least significant bit (LSB) of the red channel of each pixel. The first 32 pixels store the binary representation of the text length. The following pixels store the binary representation of the text itself.
-
     By changing only the LSB, the overall appearance of the image remains almost unchanged, and the hidden text is difficult to detect without knowing the decoding process..<br><br>
-
     Decoding: The user uploads the modified image, and when the "Reveal Text" button is clicked, the tool extracts the hidden text from the image.
-
     The tool first reads the image's pixel data and extracts the first 32 bits from the red channel's LSBs. It converts these bits into a number representing the length of the hidden text.
-
     Then, the tool extracts the following bits, corresponding to the hidden text, and converts them back into the original characters. Finally, it displays the hidden text on the screen..<br><br>
-
 Please note that this simple steganography tool is meant for educational and demonstration purposes only. The technique used in this tool is relatively basic and might not provide a high level of security against sophisticated steganalysis methods. For more advanced and secure steganography, consider using specialized software and techniques.
-
-
 `;
     const newWindow = window.open('', '_blank');
     newWindow.document.write('<!DOCTYPE html>');
@@ -335,25 +470,21 @@ Please note that this simple steganography tool is meant for educational and dem
             width: 80%;
             border-radius: 5px;
         }
-
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-
         .close:hover,
         .close:focus {
             color: #ff0000;
             text-decoration: none;
             cursor: pointer;
         }
-
         .description-text {
             white-space: pre-wrap;
         }
-
         body {
             background-image: url('https://tinyurl.com/2skx9ayf');
             background-size: cover;
@@ -372,7 +503,6 @@ Please note that this simple steganography tool is meant for educational and dem
             border-radius: 5px;
             margin-top: 5px;
         }
-
         h1 {
             color: white;
         }
@@ -552,25 +682,21 @@ function openSteganographyWindow() {
             width: 80%;
             border-radius: 5px;
         }
-
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-
         .close:hover,
         .close:focus {
             color: #ff0000;
             text-decoration: none;
             cursor: pointer;
         }
-
         .description-text {
             white-space: pre-wrap;
         }
-
         body {
             background-image: url('https://i.ytimg.com/vi/KMDPqUEPoZI/hqdefault.jpg');
             background-size: cover;
@@ -589,14 +715,12 @@ function openSteganographyWindow() {
             border-radius: 5px;
             margin-top: 5px;
         }
-
         h1 {
             color: red;
         }
         p {
             font-size: 16px;
         }
-
         
     `);
     newWindow.document.write('</style>');
@@ -644,85 +768,93 @@ function openMetaDataToolWindow() {
     });
 }
 
+function openPasswordCheckerWindow() {
+    const passwordCheckerTitle = 'Password Checker';
 
-function openNewWindow(title, description) {
     const newWindow = window.open('', '_blank');
-    newWindow.document.write(`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <style>
-        .modal-content {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            border-radius: 5px;
-        }
+    newWindow.document.write('<!DOCTYPE html>');
+    newWindow.document.write('<html lang="en">');
+    newWindow.document.write('<head>');
+    newWindow.document.write('<meta charset="UTF-8">');
+    newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    newWindow.document.write(`<title>${passwordCheckerTitle}</title>`);
+    newWindow.document.write('</head>');
+    newWindow.document.write('<body>');
+    newWindow.document.write(`<h1>${passwordCheckerTitle}</h1>`);
+    newWindow.document.write('<input type="password" id="password-input" placeholder="Enter password">');
+    newWindow.document.write('<button id="check-password">Check Password</button>');
+    newWindow.document.write('<div id="password-strength"></div>');
+    newWindow.document.write('<div id="additional-info"></div>');
+    newWindow.document.write('</body>');
+    newWindow.document.write('</html>');
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+    function waitForWindowLoad() {
+        return new Promise((resolve) => {
+            if (newWindow.document.readyState === 'complete') {
+                resolve();
+            } else {
+                newWindow.document.addEventListener('readystatechange', function() {
+                    if (newWindow.document.readyState === 'complete') {
+                        resolve();
+                    }
+                });
+            }
+        });
+    }
 
-        .close:hover,
-        .close:focus {
-            color: #ff0000;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    waitForWindowLoad().then(() => {
+        const checkPasswordButton = newWindow.document.getElementById('check-password');
+        const passwordInput = newWindow.document.getElementById('password-input');
+        const passwordStrength = newWindow.document.getElementById('password-strength');
+        const additionalInfo = newWindow.document.getElementById('additional-info');
 
-        .description-text {
-            white-space: pre-wrap;
-        }
+        checkPasswordButton.addEventListener('click', () => {
+            const password = passwordInput.value;
 
-        body {
-            background-image: url('https://tinyurl.com/2skx9ayf');
-            background-size: cover;
-            height: 100vh;
-            padding:0;
-            margin:0;
-            font-family: Arial, sans-serif;
-            display: table;
-            flex-direction: column;
-            align-items: center;
-            font-size: 18px;
-            color: white;
-            padding: 10px;
-            border:  none;
-            cursor: crosshair;
-            border-radius: 5px;
-            margin-top: 5px;
-}
+            if (password.length == 0) {
+                alert("Please enter a password");
+                return;
+            }
 
-        h1 {
-            color: white;
-        }
-        p {
-            font-size: 16px;
-        }
-    </style>
-</head>
-<body>
+            // Password strength evaluation and additional information
+            // This is a simple example, you can replace it with a more advanced algorithm
+            let strength = 0;
+            let info = '';
 
-    <div class="content-container">
-    <h1>${title}</h1>
-    <div class="description-text">${description}</div>
-    <img src='https://thumbs.gfycat.com/JitteryTanInchworm-max-1mb.gif' alt="GIF Image">
-    <img src='https://i.gzn.jp/img/2020/05/14/sha-256-animation/290.gif' alt="GIF Image">
-    </div>
+            if (password.length >= 8) {
+                strength += 1;
+            }
 
-</body>
-</html>
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) {
+                strength += 1;
+            }
 
-`);
+            if (/\d/.test(password) && /[!@#$%^&*()]/.test(password)) {
+                strength += 1;
+            }
+
+            switch (strength) {
+                case 0:
+                    info = 'Weak password.';
+                    break;
+                case 1:
+                    info = 'Moderate password.';
+                    break;
+                case 2:
+                    info = 'Strong password.';
+                    break;
+                case 3:
+                    info = 'Very strong password.';
+                    break;
+                default:
+                    info = 'Unknown strength.';
+                    break;
+            }
+
+            passwordStrength.innerHTML = info;
+            additionalInfo.innerHTML = 'For a safer password, use a combination of upper and lowercase letters, numbers, and special characters. Longer passwords are also more secure.';
+        });
+    });
 }
 
 </script>
